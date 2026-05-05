@@ -1,39 +1,96 @@
 # Cybersecurity Incident Analysis
 
+*Name:* Kathlyn M. Orillano  
+*Role:* Tier 2 Analyst  
+
+---
+
+## Title
+Advanced Persistent Attack: Unauthorized Access, Privilege Escalation, and Phishing Compromise
+
+---
+
+## Description
+A coordinated cyber attack was detected involving brute-force login attempts, unauthorized access, privilege escalation, and phishing-based credential compromise.
+
+Multiple failed SSH login attempts originated from IP address 192.168.1.105 targeting several accounts (root, admin, user). The attacker successfully gained access to the admin account and escalated privileges to root level, achieving full system control.
+
+Additional suspicious activity was observed from IP address 10.0.0.50. Investigation also revealed a phishing email containing a malicious link (http://secure-login-alert.com), which deceived a user into entering credentials, contributing to the breach.
+
+---
+
 ## Timeline of Events
-- 10:01–10:03 – Multiple failed SSH login attempts from 192.168.1.100 (root, admin, user)
-- 10:05 – Successful login to admin account from 192.168.1.100
-- 10:07 – Privilege escalation from admin to root
-- 10:10 – Failed login attempts from 10.0.0.45
-- 10:12 – Phishing email detected (fake login link)
-- 10:13 – User reported entering credentials
+- *10:05:10 – 10:06:00* → Multiple failed SSH login attempts (192.168.1.105)  
+- *10:06:30* → Successful login to admin account  
+- *10:07:00 – 10:08:00* → Privilege escalation (admin → root)  
+- *11:20:15 – 11:21:30* → Failed login attempts (10.0.0.50)  
+- *11:25:00* → Phishing email detected  
+- *11:27:00* → User entered credentials  
 
-## Analysis
-The logs show a sequence of suspicious activities starting with multiple failed login attempts, indicating a brute-force attack from IP address 192.168.1.100. After several attempts, the attacker successfully accessed the admin account.
+---
 
-Following the unauthorized access, the attacker escalated privileges from admin to root, gaining full control of the system. This confirms a serious security breach.
+## Findings
+Analysis confirms that the primary attack vector was a brute-force attack from IP address 192.168.1.105. After several failed attempts, the attacker successfully accessed the admin account.
 
-Additionally, a phishing email containing a fake login link was identified. A user reported entering their credentials, suggesting that compromised credentials may have been used in the attack.
+Privilege escalation techniques were then used to gain root-level access, allowing complete control over the affected system.
 
-Another IP address (10.0.0.45) also showed failed login attempts, which may indicate further malicious activity or support for the attack.
+Furthermore, phishing activity played a significant role. A malicious email tricked a user into revealing credentials, which likely accelerated unauthorized access.
+
+---
+
+## Root Cause Analysis
+- Weak or guessable passwords enabled brute-force success  
+- Lack of Multi-Factor Authentication (MFA)  
+- User vulnerability to phishing attacks  
+- Insufficient monitoring and alerting mechanisms  
+
+---
+
+## Impact Assessment
+- Unauthorized system access  
+- Compromise of sensitive credentials  
+- Full administrative (root) control obtained by attacker  
+- Potential data breach and system manipulation  
+
+---
 
 ## Suspicious IP Addresses
-- 192.168.1.100 (Primary attacker)
-- 10.0.0.45 (Secondary suspicious activity)
+- 192.168.1.105 (Primary attacker)  
+- 10.0.0.50 (Secondary suspicious activity)  
 
-## Conclusion
-This incident is a confirmed cyber attack involving brute-force attempts, phishing-based credential compromise, unauthorized access, and privilege escalation. The system is fully compromised.
+---
 
 ## Severity
-High
+*High / Critical*
+
+---
 
 ## Recommendations
-- Immediately reset all compromised passwords
-- Enable Multi-Factor Authentication (MFA)
-- Block suspicious IP addresses
-- Conduct phishing awareness training for users
-- Monitor system logs for further suspicious activity
-Sent 4m ago
+- Enforce strong password policies  
+- Enable Multi-Factor Authentication (MFA) across all accounts  
+- Implement account lockout policies after multiple failed attempts  
+- Block malicious IP addresses at firewall level  
+- Deploy intrusion detection/prevention systems (IDS/IPS)  
+- Conduct regular security awareness training (phishing prevention)  
+- Perform vulnerability assessments and patch management  
+
+---
+
+## Response Actions (Tier 2 Analyst)
+
+Account Lockdown: Reset all compromised credentials and terminate active sessions.
+
+Threat Containment: Block IPs 192.168.1.105 and 10.0.0.50 and isolate affected systems.
+
+Privilege Review: Remove unauthorized root access and audit all privileged accounts.
+
+Phishing Mitigation: Disable malicious URL (http://secure-login-alert.com) and notify users.
+
+System Remediation: Scan and remove malware, backdoors, or unauthorized changes.
+
+Continuous Monitoring: Enhance logging and real-time monitoring to detect future threats.
+
+Incident Escalation: Report findings to Tier 3 team for deeper forensic investigation.
+Sent
 Compose
 Write to
-
