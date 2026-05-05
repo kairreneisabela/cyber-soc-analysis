@@ -1,30 +1,39 @@
 # Cybersecurity Incident Analysis
 
 ## Timeline of Events
-- 10:01:23–10:01:30: Multiple failed SSH login attempts from 192.168.1.100 (root, admin, user)
-- 10:02:10: Successful login to admin account from 192.168.1.100
-- 10:02:15–10:03:15: Privilege escalation (admin to root)
-- 11:15:02–11:16:22: Failed login attempts from 10.0.0.45
-- Phishing email detected (fake login link)
-- User reported entering credentials
+- 10:01–10:03 – Multiple failed SSH login attempts from 192.168.1.100 (root, admin, user)
+- 10:05 – Successful login to admin account from 192.168.1.100
+- 10:07 – Privilege escalation from admin to root
+- 10:10 – Failed login attempts from 10.0.0.45
+- 10:12 – Phishing email detected (fake login link)
+- 10:13 – User reported entering credentials
 
-## Findings
-The attack originated from IP 192.168.1.100, which performed multiple failed login attempts, indicating a brute-force attack. After several attempts, the attacker successfully logged in as the admin.
+## Analysis
+The logs show a sequence of suspicious activities starting with multiple failed login attempts, indicating a brute-force attack from IP address 192.168.1.100. After several attempts, the attacker successfully accessed the admin account.
 
-The attacker then escalated privileges to root, gaining full control of the system.
+Following the unauthorized access, the attacker escalated privileges from admin to root, gaining full control of the system. This confirms a serious security breach.
 
-There is also evidence of phishing. A fake email containing a malicious link (http://fake-login.security.com) tricked a user into entering credentials, which likely contributed to the unauthorized access.
+Additionally, a phishing email containing a fake login link was identified. A user reported entering their credentials, suggesting that compromised credentials may have been used in the attack.
+
+Another IP address (10.0.0.45) also showed failed login attempts, which may indicate further malicious activity or support for the attack.
 
 ## Suspicious IP Addresses
-- 192.168.1.100 (primary attacker)
-- 10.0.0.45 (secondary suspicious activity)
+- 192.168.1.100 (Primary attacker)
+- 10.0.0.45 (Secondary suspicious activity)
 
 ## Conclusion
-This is a critical security breach involving brute-force attack, unauthorized access, privilege escalation, and phishing-based credential compromise.
+This incident is a confirmed cyber attack involving brute-force attempts, phishing-based credential compromise, unauthorized access, and privilege escalation. The system is fully compromised.
+
+## Severity
+High
 
 ## Recommendations
-- Reset all compromised passwords immediately
-- Enable multi-factor authentication (MFA)
+- Immediately reset all compromised passwords
+- Enable Multi-Factor Authentication (MFA)
 - Block suspicious IP addresses
-- Conduct phishing awareness training
+- Conduct phishing awareness training for users
 - Monitor system logs for further suspicious activity
+Sent 4m ago
+Compose
+Write to
+
